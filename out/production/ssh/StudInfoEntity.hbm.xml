@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="hib.StudInfoEntity" table="stud_info" schema="student">
+        <id name="sno" column="sno"/>
+        <property name="sname" column="sname"/>
+        <property name="ssex" column="ssex"/>
+        <property name="birth" column="birth"/>
+        <property name="nativePlace" column="native_place"/>
+        <property name="politicalStatus" column="political_status"/>
+        <property name="phone" column="phone"/>
+        <property name="email" column="email"/>
+        <property name="pic" column="pic"/>
+    </class>
+</hibernate-mapping>

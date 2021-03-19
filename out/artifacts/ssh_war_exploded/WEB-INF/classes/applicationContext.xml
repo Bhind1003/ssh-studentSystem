@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="userDAO" class="dao.userDAO"/>
+    <bean id="loginAction" class="action.Login">
+        <property name="userDAO" ref="userDAO"/>
+    </bean>
+    <bean id="stuDAO" class="dao.stuDAO"/>
+    <bean id="stuAction" class="action.stu">
+        <property name="stuDAO" ref="stuDAO"/>
+    </bean>
+    <bean id="manDAO" class="dao.manDAO"/>
+    <bean id="manAction" class="action.manager">
+        <property name="manDAO" ref="manDAO"/>
+    </bean>
+    <bean id="checkImgAction" class="action.checkImage" scope="prototype"/>
+</beans>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <constant name="struts.objectFactory" value="spring"/>
+    <package name="struct2" extends="struts-default">
+        <action name="checkImg" method="checkImg" class="checkImgAction"/>
+        <action name="Login" class="loginAction" method="login">
+            <result name="success">/main.jsp</result>
+            <result name="error">/index.jsp</result>
+            <result name="input">/index.jsp</result>
+        </action>
+        <action name="Login2" class="loginAction" method="login2">
+            <result name="success">/managerMain.jsp</result>
+            <result name="error">/managerLogin.jsp</result>
+            <result name="input">/managerLogin.jsp</result>
+        </action>
+        <action name="LoginOut" class="loginAction" method="logout">
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="listOne" class="stuAction" method="getInfo">
+            <result name="success">/stuINFO.jsp</result>
+            <result name="error">/stuINFO.jsp</result>
+        </action>
+        <action name="getSchool" class="stuAction" method="getSchool">
+            <result name="success">/stuSchool.jsp</result>
+            <result name="error">/stuSchool.jsp</result>
+        </action>
+        <action name="updateSchool" class="stuAction" method="updateSchool">
+            <result name="success">/stuSchoolChange.jsp</result>
+        </action>
+        <action name="updateInfo" class="stuAction" method="updateInfo">
+            <result name="success">/stuINFOchange.jsp</result>
+        </action>
+        <action name="changePass" class="stuAction" method="changePass">
+            <result name="success">/stuChangepass.jsp</result>
+        </action>
+        <action name="getNotice" class="stuAction" method="getNotice">
+            <result name="success">/main.jsp</result>
+        </action>
+        <action name="manNotice" class="manAction" method="getNotice">
+            <result name="success">/managerMain.jsp</result>
+        </action>
+        <action name="changeNotice" class="manAction" method="changeNotice">
+            <result name="success">/manNoticeChange.jsp</result>
+        </action>
+        <action name="deleteNotice" class="manAction" method="deleteNotice">
+            <result name="success">/managerMain.jsp</result>
+        </action>
+        <action name="findNotice" class="manAction" method="findNotice">
+            <result name="success">/managerMain.jsp</result>
+        </action>
+        <action name="changePass2" class="manAction" method="changePass">
+            <result name="success">/manChangePass.jsp</result>
+        </action>
+        <action name="findSchool" class="manAction" method="findSchool">
+            <result name="success">/manSchool.jsp</result>
+        </action>
+        <action name="updateSchool2" class="manAction" method="updateSchool2">
+            <result name="success">/manSchoolChange.jsp</result>
+        </action>
+        <action name="deleteSchool2" class="manAction" method="deleteSchool">
+            <result name="success">/manSchool.jsp</result>
+        </action>
+        <action name="listINFO2" class="manAction" method="listINFO">
+            <result name="success">/manINFO.jsp</result>
+        </action>
+        <action name="changeInfo2" class="manAction" method="changeInfo">
+            <result name="success">/manINFOchange.jsp</result>
+        </action>
+        <action name="deleteInfo2" class="manAction" method="deleteInfo">
+            <result name="success">/manINFO.jsp</result>
+        </action>
+        <action name="resetPass" class="manAction" method="resetPass">
+            <result name="success">/manINFO.jsp</result>
+        </action>
+        <action name="download" class="stuAction" method="download">
+            <result type="stream" name="success">
+                <!-- 根据inputName生产的get方法  到Action中去取得该方法的返回值 -->
+                <param name="inputName">inputStream</param>
+                <!-- 设置下载的文件 直接保存 -->
+                <param name="contentDisposition">attachment;filename=${fileName}</param>
+            </result>
+        </action>
+    </package>
+</struts>
