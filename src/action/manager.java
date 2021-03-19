@@ -33,6 +33,7 @@ public class manager {
     File img;
     StudInfoEntity stu;
     File file;
+    String cntMsg;
 
     private static void copyFileUsingFileChannels(File source, File dest) throws IOException {
         try (FileChannel inputChannel = new FileInputStream(source).getChannel(); FileChannel outputChannel = new FileOutputStream(dest).getChannel()) {
@@ -170,27 +171,26 @@ public class manager {
         Map<String, Object> session = ActionContext.getContext().getSession();
         ActionContext context = ActionContext.getContext();
         String id = context.getParameters().get("id").getValue();
-        if(id==null){
+        if (id == null) {
             System.out.println("无其余操作传入");
             msg = "";
             session.remove("school2");
             List<StudSchoolEntity> tmp = manDAO.listSchool(kind, condition);
             session.put("school2", tmp);
             if (condition != null) {
-                msg = kind +":"+ condition + ",条件搜索结果如下";
+                msg = kind + ":" + condition + ",条件搜索结果如下";
             }
             System.out.println("查询全部学生在校信息成功！");
             condition = null;
-        }else if(id.trim().compareTo("count")==0){
+        } else if (id.trim().compareTo("count") == 0) {
             System.out.println("count操作传入");
-            List<StudSchoolEntity> tmp= (List<StudSchoolEntity>) session.get("school2");
-            msg="数量为"+tmp.size()+"条记录";
+            List<StudSchoolEntity> tmp = (List<StudSchoolEntity>) session.get("school2");
+            msg = "数量为" + tmp.size() + "条记录";
             session.put("school2", tmp);
             System.out.println("查询全部学生在校信息数量成功！");
         }
         return "success";
     }
-    String cntMsg;
 
     public String getCntMsg() {
         return cntMsg;
@@ -241,7 +241,7 @@ public class manager {
         Map<String, Object> session = ActionContext.getContext().getSession();
         ActionContext context = ActionContext.getContext();
         String id = context.getParameters().get("id").getValue();
-        if(id==null){
+        if (id == null) {
             msg = "";
             session.remove("stu2");
             List<StudInfoEntity> tmp = manDAO.listStu(kind, condition);
@@ -250,12 +250,12 @@ public class manager {
                 msg = kind + condition + ",条件搜索结果如下";
             }
             System.out.println("查询全部学生个人信息成功！");
-        }else if(id.trim().compareTo("count")==0){
-            cntMsg="";
+        } else if (id.trim().compareTo("count") == 0) {
+            cntMsg = "";
             System.out.println("count操作传入");
-            List<StudInfoEntity> tmp= (List<StudInfoEntity>) session.get("stu2");
-            if(condition!=null)cntMsg=kind +"为"+condition+"数量为"+tmp.size()+"条记录";
-            else cntMsg="数量为"+tmp.size()+"条记录";
+            List<StudInfoEntity> tmp = (List<StudInfoEntity>) session.get("stu2");
+            if (condition != null) cntMsg = kind + "为" + condition + "数量为" + tmp.size() + "条记录";
+            else cntMsg = "数量为" + tmp.size() + "条记录";
             session.put("stu2", tmp);
             condition = null;
         }
