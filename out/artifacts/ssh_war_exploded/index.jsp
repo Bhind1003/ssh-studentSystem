@@ -18,7 +18,7 @@
 </head>
 <body><a href="managerLogin.jsp"><button class="btn btn-success">管理员登录</button></a>
 <center>
-    <h2 style="-webkit-text-fill-color: blue">学籍信息管理系统</h2>
+    <h2 style="-webkit-text-fill-color: blue">学信帮</h2>
     <h3>学生登录</h3>
     <s:form action="Login" method="post" enctype = "multipart/form-data">
         <s:textfield name="checkNum" label="验证码" class="form-control"/>
