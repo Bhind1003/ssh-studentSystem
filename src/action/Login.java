@@ -1,11 +1,13 @@
 package action;
 
+import dao.manDAO;
 import dao.userDAO;
 import hib.*;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -17,6 +19,10 @@ public class Login extends ActionSupport {
     public void setUser(StudentLogEntity user) {
         this.user = user;
     }
+    dao.manDAO manDAO;
+    public void setManDAO(manDAO manDAO) {
+        this.manDAO = manDAO;
+    }
     String msg="";
     public String getMsg() {
         return msg;
@@ -25,6 +31,17 @@ public class Login extends ActionSupport {
     public void setCheckNum(String checkNum) {
         this.checkNum = checkNum;
     }
+
+    public void initNotice()
+    {
+        Map<String, Object> session = ActionContext.getContext().getSession();
+        session.remove("notice");
+        session.remove("notice2");
+        List<NoticeEntity> tmp = manDAO.listNotice();
+        session.put("notice", tmp);
+        session.put("notice2", tmp);
+    }
+
     public String login()throws Exception{
         msg="";
         String checked =(String) ServletActionContext.getRequest().getSession().getAttribute("checked");
@@ -38,6 +55,7 @@ public class Login extends ActionSupport {
             if(judge){
                 Map<String, Object> session=ActionContext.getContext().getSession();
                 session.put("user", user.getSno());
+                initNotice();
                 return "success";
             }else {
                 msg="密码输入错误，请重试！";
@@ -75,6 +93,7 @@ public class Login extends ActionSupport {
             if(judge){
                 Map<String, Object> session=ActionContext.getContext().getSession();
                 session.put("user", user.getSno());
+                initNotice();
                 return "success";
             }else {
                 msg="密码输入错误，请重试！";

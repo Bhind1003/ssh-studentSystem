@@ -72,7 +72,6 @@ public class stu {
             StudInfoEntity tmp = stuDAO.select1(stu.getSno());
             tmp.setEmail(stu.getEmail());
             tmp.setPhone(stu.getPhone());
-            tmp = stuDAO.updateINFO(tmp);
             if (img != null) {
                 String destPath = "D:\\IdeaProjects\\ssh\\web\\upfile\\";//你要保存的路径
                 File destFile = new File(destPath, stu.getSno() + ".jpg");
@@ -81,9 +80,13 @@ public class stu {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                stu.setPic("upfile/" + stu.getSno() + ".jpg");
+                stu.setPic("/upfile/" + stu.getSno() + ".jpg");
             }
-            if (tmp != null) msg = "修改个人信息成功！";
+            if (tmp != null) {
+                tmp.setPic(stu.getPic());
+                tmp = stuDAO.updateINFO(tmp);
+                msg = "修改个人信息成功！";
+            }
             else msg = "修改个人信息失败！";
         } else {
             System.out.println("跳转到修改个人信息页面");

@@ -5,6 +5,7 @@
     <bean id="userDAO" class="dao.userDAO"/>
     <bean id="loginAction" class="action.Login">
         <property name="userDAO" ref="userDAO"/>
+        <property name="manDAO" ref="manDAO"/>
     </bean>
     <bean id="stuDAO" class="dao.stuDAO"/>
     <bean id="stuAction" class="action.stu">

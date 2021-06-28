@@ -189,6 +189,8 @@ public class manager {
             session.put("school2", tmp);
             System.out.println("查询全部学生在校信息数量成功！");
         }
+        kind = null;
+        condition = null;
         return "success";
     }
 
@@ -259,6 +261,8 @@ public class manager {
             session.put("stu2", tmp);
             condition = null;
         }
+        kind = null;
+        condition = null;
         return "success";
     }
 
@@ -287,7 +291,7 @@ public class manager {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                stu.setPic("upfile/" + stu.getSno() + ".jpg");
+                stu.setPic("/upfile/" + stu.getSno() + ".jpg");
             }
             StudInfoEntity tmp = new stuDAO().updateINFO(stu);
             if (tmp != null) {
